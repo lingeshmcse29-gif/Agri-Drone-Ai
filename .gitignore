@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+*/node_modules/
+package-lock.json.backup
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+*.env
+
+# Production & Build Outputs
+dist/
+build/
+*/dist/
+*/build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS & IDE Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Upload Directories
+backend/uploads/hotspots/*
+!backend/uploads/hotspots/.gitkeep
+backend/uploads/processed/*
+!backend/uploads/processed/.gitkeep
+backend/uploads/drone/*
+!backend/uploads/drone/.gitkeep
+!backend/uploads/drone/sample_orthomosaic.jpg
+# Root uploads directory (if any)
+/uploads/
