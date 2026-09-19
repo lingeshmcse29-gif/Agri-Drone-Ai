@@ -70,3 +70,15 @@ npm run dev
 ## 🌟 Instant Demo Scan Mode
 
 Click **"Launch Demo Scan Mode"** on the Drone Scan page or Dashboard to execute the complete field intelligence pipeline with pre-bundled high-resolution drone orthomosaic imagery out of the box!
+
+---
+
+## 🌐 Cloud Deployment & Hosting
+
+For instructions on deploying the full stack (Frontend + Backend + MongoDB) to cloud providers (Render, Railway, Vercel, or Docker VPS), see the comprehensive [Deployment Guide](docs/DEPLOYMENT_GUIDE.md).
+
+### Quick 1-Click Render Deploy
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+- **Runtime**: Node.js
+- **Build**: `npm run install:all && npm run build`
+- **Start**: `npm start`

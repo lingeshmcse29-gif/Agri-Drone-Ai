@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const path = require('path');
+const fs = require('fs');
 const { getConfig } = require('./config/env');
 const { connectDB, closeDB, getDatabaseStatus } = require('./config/database');
 const logger = require('./utils/logger');
@@ -117,6 +118,18 @@ app.use('/api/weather', require('./routes/weatherRoutes'));
 app.use('/api/alerts', require('./routes/alertRoutes'));
 app.use('/api/recommendations', require('./routes/recommendationRoutes'));
 app.use('/api/ai', require('./routes/aiRoutes'));
+
+// 10b. Serve Production Frontend Static Assets (Single-Host SPA Support)
+const frontendDist = path.resolve(__dirname, '../frontend/dist');
+if (fs.existsSync(frontendDist)) {
+  app.use(express.static(frontendDist));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  });
+}
 
 // 11. Centralized 404 Route Not Found Handler
 app.use(notFoundHandler);

@@ -1,0 +1,22 @@
+services:
+  # Fullstack Web Service (Serves API + React SPA)
+  - type: web
+    name: agridrone-ai-service
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm run install:all && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: APP_MODE
+        value: DEMO
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI
+        sync: false
+      - key: UPLOAD_DIR
+        value: ./uploads
+      - key: CORS_ORIGINS
+        value: "*"

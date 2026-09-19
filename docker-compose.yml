@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agridrone-app
+    restart: unless-stopped
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
+      - APP_MODE=DEMO
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/agri_drone_ai
+      - JWT_SECRET=production_agridrone_jwt_secret_key_change_me_2026
+      - UPLOAD_DIR=./uploads
+      - CORS_ORIGINS=http://localhost:5001,http://localhost:3000
+    depends_on:
+      - mongo
+    volumes:
+      - app-uploads:/app/backend/uploads
+
+  mongo:
+    image: mongo:7.0
+    container_name: agridrone-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
+  app-uploads:
